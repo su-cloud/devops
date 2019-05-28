@@ -1,6 +1,3 @@
-# devops
-DevOps 演示项目
-
 1.使用Git Bash生成证书
 
 	$ssh-keygen.exe -t rsa
@@ -18,22 +15,53 @@ DevOps 演示项目
 
 	$ cat id_rsa.pub
 
-2.把公钥id_rsa.pub的内容放置到github上。
+5.把公钥id_rsa.pub的内容放置到github/gitlab上。
 
-打开Github。点击用户图像--Settings--SSH and GPG keys--New SSH
+- GitHub: 打开Github。点击用户图像-->Settings--SSH and GPG keys--New SSH
+- GitLab: 
+ 
 
-3.克隆仓库代码
+6.完成代码提交
 
+	#配置Git
+	git config --global user.email "you@example.com"
+	git config --global user.name "Your Name"
+
+	#克隆仓库代码
 	git clone git@github.com:su-cloud/devops.git
 
-4.编写代码
 
+	#切换到devops项目目录下
 	cd ~/Desktop/devops
-	git status
+	
+	# 增加修改的文件到暂存区
 	git add README.md
-	git commit -m "第一次提交" README.md
+
+	# 本地提交
+	git commit -m "增加说明" README.md
+
+	# 推送代码到远程仓库
 	git push
 
+
+Pipeline 练习：
+
+```	
+node {
+   stage("拉取代码") {
+       echo "拉取代码"
+   }
+   stage("代码编译") {
+       echo "代码编译"
+   }
+   stage("单元测试") {
+       echo "单元测试"
+   }
+   stage("代码质量检查") {
+       echo "代码质量检查"
+   }
+}
+```
 
 
 
