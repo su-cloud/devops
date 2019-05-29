@@ -101,6 +101,28 @@ node {
 
 流程的异常处理：邮件通知
 
+### Pipeline 案例
+
+```
+node {
+   stage("拉取代码") {
+       echo "拉取代码"
+       git branch: 'develop', credentialsId: '2abad7ed-e9be-43d9-8821-31270f04e42a', url: 'git@git.womaiyun.com:zhaoshundong/devops-demo.git'
+   }
+   stage("代码编译") {
+       echo "代码编译"
+   }
+   stage("单元测试") {
+       echo "单元测试"
+   }
+   stage("代码质量检查") {
+       echo "代码质量检查"
+   }
+   stage("邮件通知"){
+       sh 'cat /etc/hosts'
+   }
+}
+```
 ## 集成阶段流水线
 
 阶段目标：完成代码测试、生成制品，并上传到制品库
@@ -127,6 +149,8 @@ node {
 - 执行部署
 
 
+## 切换分支
 
-
+git fetch
+git checkout develop
 
